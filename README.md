@@ -16,3 +16,7 @@ Currently in **Beta**, this project focuses on providing a clean, distraction-fr
 *   **JavaScript:** Optimized event handling for instant audio loading and playback execution.
 
 ##
+
+[vercel]
+
+[vercel]: https://vercel.com/?utm_source=memerz&utm_campaign=oss
