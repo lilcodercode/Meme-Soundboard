@@ -1,1 +1,1 @@
-## Contributing to [Memerz](github.com/treatwashere/memerz)
+## Contributing to [Memerz](https://github.com/treatwashere/Memerz)
