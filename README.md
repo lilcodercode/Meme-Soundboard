@@ -17,6 +17,11 @@ Currently in **Beta**, this project focuses on providing a clean, distraction-fr
 
 ##
 
+
+Want to [contribute?](https://github.com/treatwashere/Memerz/blob/main/CONTRIBUTING.md)
+
+##
+
 [![Powered by Vercel](powered-by-vercel.svg)][vercel]
 
 [vercel]: https://vercel.com/?utm_source=memerz&utm_campaign=oss
