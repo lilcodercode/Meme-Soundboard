@@ -20,7 +20,7 @@ Currently in **Beta**, this project focuses on providing a clean, distraction-fr
 
 Want to contribute? See [CONTRIBUTING.md](https://github.com/treatwashere/Memerz/blob/main/CONTRIBUTING.md)
 
-##
+#
 
 [![Powered by Vercel](powered-by-vercel.svg)][vercel]
 
