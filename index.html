@@ -61,6 +61,13 @@ font-size: 1rem;
 margin: 0 0 15px 0;
 }
 
+.nav-links {
+display: flex;
+gap: 20px;
+justify-content: center;
+flex-wrap: wrap;
+}
+
 .nav-links a {
 color: #2563eb;
 text-decoration: none;
@@ -152,111 +159,6 @@ transform: translateY(0);
 display: none;
 }
 
-/* CHANGELOG MODAL */
-.changelog-modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: rgba(0, 0, 0, 0.6);
-z-index: 10000;
-align-items: center;
-justify-content: center;
-}
-
-.changelog-modal.active {
-display: flex;
-}
-
-.changelog-content {
-background: #fafafa;
-border-radius: 12px;
-padding: 30px;
-max-width: 500px;
-max-height: 80vh;
-overflow-y: auto;
-position: relative;
-width: 90%;
-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-.changelog-close {
-position: absolute;
-top: 15px;
-right: 15px;
-background: #ef4444;
-color: white;
-border: none;
-width: 30px;
-height: 30px;
-border-radius: 50%;
-cursor: pointer;
-font-size: 1.2rem;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.changelog-close:hover {
-background: #dc2626;
-}
-
-.changelog-content h2 {
-margin-top: 0;
-color: #1e293b;
-}
-
-.release-item {
-margin-bottom: 20px;
-padding-bottom: 15px;
-border-bottom: 1px solid #cbd5e1;
-}
-
-.release-item:last-child {
-border-bottom: none;
-}
-
-.release-version {
-font-weight: 700;
-color: #2563eb;
-margin-bottom: 5px;
-}
-
-.release-date {
-font-size: 0.85rem;
-color: #64748b;
-margin-bottom: 8px;
-}
-
-.release-body {
-color: #475569;
-font-size: 0.9rem;
-line-height: 1.5;
-}
-
-/* CHANGELOG BUTTON AT BOTTOM */
-.changelog-button {
-display: block;
-width: 100%;
-margin-top: 30px;
-padding: 12px;
-background: #2563eb;
-color: white;
-border: none;
-border-radius: 6px;
-cursor: pointer;
-font-weight: 600;
-font-size: 0.95rem;
-transition: all 0.2s ease;
-}
-
-.changelog-button:hover {
-background: #1d4ed8;
-transform: translateY(-2px);
-}
-
 /* --- VERCEL DOCK STYLE DRAGGABLE BUTTON --- */
 .floating-toolbar {
 position: fixed;
@@ -312,6 +214,7 @@ transform: scale(0.95);
 <p class="description">This Is Still In BETA! Will Also Soon Become An App & Website.</p>
 <div class="nav-links">
 <a href="https://www.youtube.com/@treatwashere" target="_blank">📺 Visit YouTube Channel</a>
+<a href="/changelog">📋 Changelog</a>
 </div>
 </div>
 
@@ -396,18 +299,6 @@ transform: scale(0.95);
 <button class="sound-btn" data-name="danger edit" onclick="playSound('https://raw.githubusercontent.com/treatwashere/Memerz/refs/heads/main/verity-edit.mp3')">danger edit</button>
 </div>
 
-<!-- CHANGELOG BUTTON -->
-<button class="changelog-button" id="changelogBtn">📋 View Changelog</button>
-
-</div>
-
-<!-- CHANGELOG MODAL -->
-<div class="changelog-modal" id="changelogModal">
-<div class="changelog-content">
-<button class="changelog-close" id="closeChangelogBtn">✕</button>
-<h2>📋 Memerz Changelog</h2>
-<div id="changelogList">Loading changelog...</div>
-</div>
 </div>
 
 <!-- Fixed Vercel Floating Button Docks Globally On Page -->
@@ -418,7 +309,7 @@ transform: scale(0.95);
 <!-- Scripts CDN -->
 <script src="https://elfsightcdn.com/platform.js" async></script>
 
-<!-- Sound Processing & Enhanced Features Logic -->
+<!-- Sound Processing & Search Logic -->
 <script>
 let activeSounds = [];
 
@@ -462,57 +353,6 @@ searchInput.value = '';
 searchInput.focus();
 soundButtons.forEach(btn => btn.classList.remove('hidden'));
 });
-
-// CHANGELOG MODAL
-const changelogBtn = document.getElementById('changelogBtn');
-const changelogModal = document.getElementById('changelogModal');
-const closeChangelogBtn = document.getElementById('closeChangelogBtn');
-const changelogList = document.getElementById('changelogList');
-
-changelogBtn.addEventListener('click', fetchChangelog);
-closeChangelogBtn.addEventListener('click', closeChangelog);
-changelogModal.addEventListener('click', (e) => {
-if (e.target === changelogModal) closeChangelog();
-});
-
-async function fetchChangelog() {
-changelogList.innerHTML = '<p>Loading releases...</p>';
-changelogModal.classList.add('active');
-
-try {
-const response = await fetch('https://api.github.com/repos/treatwashere/Memerz/releases');
-const releases = await response.json();
-
-if (releases.length === 0) {
-changelogList.innerHTML = '<p>No releases yet. Check back soon!</p>';
-return;
-}
-
-let html = '';
-releases.forEach(release => {
-const version = release.tag_name || release.name || 'Unknown';
-const date = new Date(release.published_at).toLocaleDateString();
-const body = release.body || 'No description available.';
-
-html += `
-<div class="release-item">
-<div class="release-version">v${version}</div>
-<div class="release-date">Released: ${date}</div>
-<div class="release-body">${body.replace(/\n/g, '<br>')}</div>
-</div>
-`;
-});
-
-changelogList.innerHTML = html;
-} catch (error) {
-changelogList.innerHTML = '<p>Error loading changelog. Check back later!</p>';
-console.error('Changelog fetch error:', error);
-}
-}
-
-function closeChangelog() {
-changelogModal.classList.remove('active');
-}
 
 /* --- FIXED FLUID TRANSFORMS DRAG LOGIC --- */
 const toolbar = document.getElementById('floating-toolbar');
