@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memerz Changelog</title>
+<link rel="icon" type="image/png" href="All Logos.png">
+<style>
+body {
+margin: 0;
+padding: 40px 20px;
+background: linear-gradient(135deg, #0f172a, #1e293b);
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+color: #334155;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+box-sizing: border-box;
+}
+
+.changelog-frame {
+width: 100%;
+max-width: 900px;
+background: #fafafa;
+border-radius: 12px;
+box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+border: 1px solid #334155;
+padding: 40px 30px;
+max-height: 85vh;
+overflow-y: auto;
+position: relative;
+box-sizing: border-box;
+}
+
+.header-area {
+text-align: center;
+margin-bottom: 30px;
+border-bottom: 2px solid #cbd5e1;
+padding-bottom: 20px;
+}
+
+.title {
+font-size: 2rem;
+color: #1e293b;
+margin: 0 0 10px 0;
+}
+
+.back-link {
+color: #2563eb;
+text-decoration: none;
+font-weight: 500;
+margin-top: 15px;
+display: inline-block;
+}
+
+.back-link:hover {
+text-decoration: underline;
+}
+
+.loading {
+text-align: center;
+color: #64748b;
+font-size: 1rem;
+padding: 40px;
+}
+
+.changelog-list {
+display: flex;
+flex-direction: column;
+gap: 25px;
+}
+
+.release-item {
+background: #f8fafc;
+border-left: 4px solid #2563eb;
+padding: 20px;
+border-radius: 6px;
+transition: all 0.2s ease;
+}
+
+.release-item:hover {
+box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+transform: translateX(4px);
+}
+
+.release-version {
+font-size: 1.3rem;
+font-weight: 700;
+color: #1e293b;
+margin-bottom: 8px;
+}
+
+.release-date {
+font-size: 0.85rem;
+color: #64748b;
+margin-bottom: 12px;
+font-style: italic;
+}
+
+.release-body {
+color: #475569;
+font-size: 0.95rem;
+line-height: 1.6;
+white-space: pre-wrap;
+word-wrap: break-word;
+}
+
+.no-releases {
+text-align: center;
+color: #64748b;
+padding: 40px 20px;
+font-style: italic;
+}
+
+.error-message {
+background: #fee2e2;
+color: #991b1b;
+padding: 20px;
+border-radius: 6px;
+margin-top: 20px;
+}
+
+/* GitHub icon in corner */
+.github-icon {
+position: absolute;
+right: 20px;
+top: 20px;
+}
+
+.github-icon img {
+height: 2em;
+display: block;
+}
+
+</style>
+</head>
+<body>
+
+<div class="changelog-frame">
+
+<!-- GitHub icon -->
+<a class="github-icon" href="https://github.com/treatwashere/Memerz" target="_blank">
+<img src="https://raw.githubusercontent.com/treatwashere/Meme-Soundboard/refs/heads/main/GitHub_Invertocat_Black_Clearspace.png" alt="GitHub">
+</a>
+
+<div class="header-area">
+<h1 class="title">📋 Memerz Changelog</h1>
+<a href="/" class="back-link">← Back to Soundboard</a>
+</div>
+
+<div id="changelogContainer" class="loading">Loading releases...</div>
+
+</div>
+
+<script>
+async function loadChangelog() {
+const container = document.getElementById('changelogContainer');
+
+try {
+const response = await fetch('https://api.github.com/repos/treatwashere/Memerz/releases');
+const releases = await response.json();
+
+if (!releases || releases.length === 0) {
+container.innerHTML = '<div class="no-releases">No releases yet. Check back soon!</div>';
+return;
+}
+
+let html = '<div class="changelog-list">';
+
+releases.forEach(release => {
+const version = release.tag_name || release.name || 'Unknown';
+const date = new Date(release.published_at).toLocaleDateString('en-US', {
+year: 'numeric',
+month: 'long',
+day: 'numeric'
+});
+const body = release.body || 'No description available.';
+
+html += `
+<div class="release-item">
+<div class="release-version">v${version}</div>
+<div class="release-date">Released: ${date}</div>
+<div class="release-body">${body}</div>
+</div>
+`;
+});
+
+html += '</div>';
+container.innerHTML = html;
+} catch (error) {
+container.innerHTML = `
+<div class="error-message">
+<strong>Error loading changelog:</strong> Unable to fetch releases from GitHub. Please try again later.
+</div>
+`;
+console.error('Changelog fetch error:', error);
+}
+}
+
+// Load changelog when page loads
+window.addEventListener('load', loadChangelog);
+</script>
+
+</body>
+</html>
