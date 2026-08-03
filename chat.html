@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memerz Chat - (BETA) </title>
+  <style>
+    /* 1. Set the background of the whole page to dark so it matches Giscus */
+    body {
+      background-color: #0d1117; 
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      box-sizing: border-box;
+    }
+
+    /* 2. Style the "Reddit Card" container */
+    .reddit-container {
+      width: 100%;
+      max-width: 850px; /* Keeps the feed at a comfortable, readable Reddit-style width */
+      background-color: #161b22; /* Slightly lighter dark background for contrast */
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      box-sizing: border-box;
+    }
+
+    /* 3. Style the Reddit Header */
+    .forum-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #30363d;
+    }
+
+    /* The orange r/ icon */
+    .community-avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #ff4500, #ff5722); /* Reddit Orange */
+      border-radius: 50%;
+      color: white;
+      font-weight: bold;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .forum-title {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #f0f6fc;
+      font-weight: 600;
+    }
+
+    .forum-subtitle {
+      margin: 4px 0 0 0;
+      font-size: 0.9rem;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- This is the card holding everything -->
+  <div class="reddit-container">
+    
+    <!-- Header -->
+    <div class="forum-header">
+     <div class="community-avatar">
+      <img src="All Logos.png" alt="Community Icon class="avatar-image">
+    </div>
+        <h2 class="forum-title">Memerz chat</h2>
+        <p class="forum-subtitle">Upvote, reply, and share your thoughts!</p>
+      </div>
+    </div>
+
+    <!-- Giscus will load inside this div -->
+    <div class="giscus"></div>
+
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- REPLACE THE SCRIPT BELOW WITH YOUR PERSONAL GISCUS CODE -->
+  <!-- ======================================================= -->
+  <script src="https://giscus.app/client.js"
+          data-repo="YOUR_GITHUB_USERNAME/YOUR_REPO_NAME"
+          data-repo-id="YOUR_REPO_ID"
+          data-category="General"
+          data-category-id="YOUR_CATEGORY_ID"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="dark"  <!-- Hardcodes the dark theme to match the page background -->
+          data-lang="en"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+</body>
+</html>
