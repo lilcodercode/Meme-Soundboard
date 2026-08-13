@@ -1,4 +1,4 @@
-# 🔊 Memerz (Beta)
+# 🔊 [Memerz](https://memerz-dun.vercel.app/) (Beta)
 
 Welcome to **Memerz**, a sleek, highly responsive web-based meme soundboard designed to deliver your favorite sound bites instantly. 
 
