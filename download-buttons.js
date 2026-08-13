@@ -109,7 +109,7 @@ saveFile(url, file, dl);
 });
 wrap.appendChild(dl);
 
-/* Phones: the GitHub button is their download button. */
+/* Phones: same download icon, but it opens the file on GitHub to save. */
 var gh = document.createElement('a');
 gh.className = 'dl-btn dl-mobile';
 gh.href = blobPageUrl(url);
@@ -117,7 +117,7 @@ gh.target = '_blank';
 gh.rel = 'noopener';
 gh.title = 'Download ' + name + ' from GitHub';
 gh.setAttribute('aria-label', 'Download ' + name + ' from GitHub');
-gh.innerHTML = '<i class="bx bxl-github"></i>';
+gh.innerHTML = '<i class="bx bx-arrow-to-bottom"></i>';
 wrap.appendChild(gh);
 });
 }
