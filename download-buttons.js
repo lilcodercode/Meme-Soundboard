@@ -2,8 +2,8 @@
 /*
 Adds a download control next to every sound button (and nothing else).
 Tablets and computers get the boxicons arrow-to-bottom button, which saves
-the audio file straight to the device. Phones get the GitHub button instead,
-which opens the file on GitHub where mobile browsers can save it properly.
+the audio file straight to the device. Phones show the same icon, but it
+opens the file on GitHub where mobile browsers can save it properly.
 */
 (function () {
 
