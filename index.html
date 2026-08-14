@@ -195,6 +195,28 @@ cursor: grabbing;
 transform: scale(0.95);
 }
 
+
+  .discord-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #5865F2;
+  color: #fff;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background .2s;
+}
+
+.discord-btn:hover {
+  background: #4752c4;
+}
+
+.discord-btn i {
+  font-size: 1.2rem;
+}
 </style>
 </head>
 <body>
@@ -406,6 +428,11 @@ stopAllSounds();
 
 <!-- Per-Sound Download Buttons -->
 <script src="download-buttons.js"></script>
+
+  <a href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" class="discord-btn">
+  <i class="bi bi-discord"></i>
+  Discord
+</a>
 
 </body>
 </html>
