@@ -1,0 +1,86 @@
+/* --- MEMERZ: PER-SOUND DOWNLOAD BUTTONS --- */
+/* Adds a download control beside every sound button in the soundboard grid. */
+
+/* Slightly wider cells so the sound name and its download button both fit. */
+.soundboard-frame .soundboard-grid {
+grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+
+/* Wrapper that pairs one sound button with its download button. */
+.soundboard-grid .sound-item {
+display: flex;
+align-items: stretch;
+gap: 8px;
+min-width: 0;
+}
+
+/* Keeps the search filter working now that buttons sit inside a wrapper. */
+.soundboard-grid .sound-item:has(.sound-btn.hidden) {
+display: none;
+}
+
+.sound-item .sound-btn {
+flex: 1 1 auto;
+min-width: 0;
+}
+
+/* The download control itself. */
+.sound-item .dl-btn {
+flex: 0 0 auto;
+width: 46px;
+padding: 0;
+background: #ffffff;
+color: #1e293b;
+border: 1px solid #cbd5e1;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.35rem;
+line-height: 1;
+text-decoration: none;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.sound-item .dl-btn:hover {
+background: #f8fafc;
+border-color: #94a3b8;
+color: #2563eb;
+transform: translateY(-2px);
+box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+}
+
+.sound-item .dl-btn:active {
+transform: translateY(0);
+}
+
+.sound-item .dl-btn.dl-busy {
+opacity: 0.55;
+pointer-events: none;
+}
+
+.sound-item .dl-btn i {
+display: block;
+pointer-events: none;
+}
+
+/* Tablets and computers: the arrow-to-bottom button downloads the file. */
+.sound-item .dl-desktop {
+display: flex;
+}
+
+.sound-item .dl-mobile {
+display: none;
+}
+
+/* Phones: the GitHub button is the download button. */
+@media (max-width: 767px) {
+.sound-item .dl-desktop {
+display: none;
+}
+.sound-item .dl-mobile {
+display: flex;
+}
+}
